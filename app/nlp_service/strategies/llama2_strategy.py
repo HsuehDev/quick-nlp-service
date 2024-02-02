@@ -11,7 +11,7 @@ import torch
 
 class LLaMa2Strategy(NLPInterface):
     def __init__(self) -> None:
-        self.model_endpoint:str = "./app/nlp_service/model/chinse-alpaca-2-7b"
+        self.model_endpoint:str = "./app/nlp_service/model/chinese-alpaca-2-7b"
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_endpoint)
         
         self.pipeline = transformers.pipeline(

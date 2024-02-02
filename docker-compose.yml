@@ -17,7 +17,7 @@ services:
     volumes:
       # - ./main.py:/app/app/main.py
       # Map the host model folder to nlp_service/model.
-      - ${MODEL_DIR}:app/app/nlp_service/model
+      - ${MODEL_DIR}:/app/app/nlp_service/model
     ports:
       - "80:8000"
 
