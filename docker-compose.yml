@@ -2,7 +2,9 @@ version: "3"
 
 services:
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.${COMPUTE_UNIT}
     container_name: openai_fastapi_container
     environment:
       OPENAI_API_TYPE: ${OPENAI_API_TYPE}
