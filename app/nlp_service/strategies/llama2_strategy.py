@@ -10,46 +10,36 @@ import transformers
 import torch
 
 class LLaMa2Strategy(NLPInterface):
-    # def __init__(self) -> None:
-    #     self.model_endpoint:str = "Extrabass/llama-2-7b-chat-hf-plant-qa"
-    #     self.tokenizer = AutoTokenizer.from_pretrained(self.model_endpoint)
+    def __init__(self) -> None:
+        self.model_endpoint:str = "Extrabass/llama-2-7b-chat-hf-plant-qa"
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_endpoint)
         
-    #     self.pipeline = transformers.pipeline(
-    #         "text-generation",
-    #         model=self.model_endpoint,
-    #         torch_dtype=torch.float32,
-    #         device_map="auto",
-    #     )
-
+        self.pipeline = transformers.pipeline(
+            "text-generation",
+            model=self.model_endpoint,
+            torch_dtype=torch.float32,
+            device_map="auto",
+        )
 
     def process_text(self, params: Params) -> Response:    
         prompt:str = Formatter().openai_to_llama(list(params.roles))
         
-        # ### 利用 pipeline 調用模型       
-        # sequences = self.pipeline(
-        #     prompt,
-        #     do_sample=True,
-        #     top_k=params.top_k,
-        #     num_return_sequences=1,
-        #     eos_token_id=self. tokenizer.eos_token_id,
-        #     max_length=params.max_tokens
-        # )
+        ### 利用 pipeline 調用模型       
+        sequences = self.pipeline(
+            prompt,
+            do_sample=True,
+            top_k=params.top_k,
+            num_return_sequences=1,
+            eos_token_id=self. tokenizer.eos_token_id,
+            max_length=params.max_tokens
+        )
         
-        # response_text: str = ''.join(seq['generated_text'] for seq in sequences)
-        
-        response_text:str = prompt + "hello"
-        
-        print("response_text:")
-        print(response_text)
-        print()
+        response_text: str = ''.join(seq['generated_text'] for seq in sequences)
         
         result:List = [{"role": item.role, "content": item.content} for item in Formatter().llama_to_openai(response_text)]
             
         lastest_response_role: str = result[-1]["role"] if len(result) > 0 else ""
         lastest_response_content: str = result[-1]["content"] if len(result) > 0 else ""
-        print("result")
-        print(result)
-        print()
         
         return Response(
             purpose = params.purpose,
