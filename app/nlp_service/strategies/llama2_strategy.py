@@ -39,6 +39,10 @@ class LLaMa2Strategy(NLPInterface):
         
         response_text:str = prompt
         
+        print("response_text:")
+        print(response_text)
+        print()
+        
         result:List = [{"role": item.role, "content": item.content} for item in Formatter().llama_to_openai(response_text)]
             
         print("result")
