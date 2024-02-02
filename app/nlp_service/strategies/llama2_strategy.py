@@ -55,6 +55,7 @@ class LLaMa2Strategy(NLPInterface):
             purpose = params.purpose,
             input_messages = params.roles,
             response = {
+                "model": params.engine,
                 "choices": [{
                     "message":{
                         "role": lastest_response_role,
