@@ -19,11 +19,9 @@ async def process_text(params: Params):
     
     nlp_service: NLPInterface = nlp_strategies.get(params.engine)
     
-    # return params, model_category
     if nlp_service:
         result:Response = nlp_service.process_text(params)
         
-        # print(f"result: ${result}")
         # 將結果插入到 MongoDB
         save_response_data(result)
         
