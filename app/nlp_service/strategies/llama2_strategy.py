@@ -41,10 +41,16 @@ class LLaMa2Strategy(NLPInterface):
         
         result:List = [{"role": item.role, "content": item.content} for item in Formatter().llama_to_openai(response_text)]
             
-        print(result.to_dict())
         return Response(
             purpose = params.purpose,
             input_messages = params.roles,
-            response =result.to_dict()
+            response = {
+                "choices": [{
+                    "message":{
+                        "role": result[-1]["role"],
+                        "content": result[-1]["content"]
+                    }
+                }]
+            }
         )
         # pass
