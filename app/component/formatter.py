@@ -47,7 +47,7 @@ class Formatter():
         system_message_pattern = re.compile(r'<<SYS>>(.*?)<</SYS>>')
         
         system_message_match = re.search(system_message_pattern, input_text)
-        if system_message_pattern:
+        if system_message_match:
             self.system_message = system_message_match.group(1)
         else:
             self.system_message = ""
