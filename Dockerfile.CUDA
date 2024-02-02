@@ -12,8 +12,8 @@ WORKDIR /app
 COPY . /app/
 
 # 安裝所需套件
-RUN pip3 install --no-cache-dir -r requirements.txt
 RUN pip3 install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # 開放 FastAPI 應用程式使用的連接埠 (預設是 8000)
 EXPOSE 8001
