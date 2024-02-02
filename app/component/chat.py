@@ -11,7 +11,7 @@ class Params(BaseModel):
     temperature: Optional[float] = 0.7
     max_tokens: Optional[int] = 200
     top_p: Optional[float] = 0.95
-    top_k: Optional[float] = 0.95
+    top_k: Optional[int] = 5
     roles: List[RoleItem]
     frequency_penalty: Optional[float]
     presence_penalty: Optional[float]
