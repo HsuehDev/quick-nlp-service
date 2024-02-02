@@ -38,7 +38,9 @@ class Formatter():
                 current_content = f"[INST]{current_system_message}{current_content}[/INST]"
 
                 first_user = False
-            result += f"""{current_content}"""
+            
+            if current_role == "user" or current_role == "assistant":
+                result += f"""{current_content}"""
 
         return result
 
