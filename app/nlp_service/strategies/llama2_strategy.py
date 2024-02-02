@@ -10,17 +10,17 @@ import transformers
 import torch
 
 class LLaMa2Strategy(NLPInterface):
-    # def __init__(self) -> None:
-    #     self.model_endpoint:str = "./nlp_service/model/chinse-alpaca-2-7b"
-    #     self.tokenizer = AutoTokenizer.from_pretrained(self.model_endpoint)
+    def __init__(self) -> None:
+        self.model_endpoint:str = "./app/nlp_service/model/chinse-alpaca-2-7b"
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_endpoint)
         
-    #     self.pipeline = transformers.pipeline(
-    #         "text-generation",
-    #         token = os.environ.get('HF_ACCESS_TOKEN'),
-    #         model=self.model_endpoint,
-    #         torch_dtype=torch.float32,
-    #         device_map="auto",
-    #     )
+        self.pipeline = transformers.pipeline(
+            "text-generation",
+            token = os.environ.get('HF_ACCESS_TOKEN'),
+            model=self.model_endpoint,
+            torch_dtype=torch.float32,
+            device_map="auto",
+        )
 
     def process_text(self, params: Params) -> Response:    
         prompt:str = Formatter().openai_to_llama(list(params.roles))
