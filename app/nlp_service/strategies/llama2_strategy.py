@@ -16,7 +16,7 @@ class LLaMa2Strategy(NLPInterface):
         self.pipeline = transformers.pipeline(
             "text-generation",
             model=self.model_endpoint,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.float32,
             device_map="auto",
         )
 
