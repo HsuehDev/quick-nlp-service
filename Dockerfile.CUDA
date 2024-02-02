@@ -13,6 +13,8 @@ COPY . /app/
 
 # 安裝所需套件
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install conda
+RUN conda install pytorch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 pytorch-cuda=12.1 -c pytorch -c nvidia
 
 # 開放 FastAPI 應用程式使用的連接埠 (預設是 8000)
 EXPOSE 8001
