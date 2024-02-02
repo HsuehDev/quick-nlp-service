@@ -37,7 +37,7 @@ class LLaMa2Strategy(NLPInterface):
         
         # response_text: str = ''.join(seq['generated_text'] for seq in sequences)
         
-        response_text:str = prompt
+        response_text:str = prompt + "hello"
         
         print("response_text:")
         print(response_text)
@@ -45,6 +45,8 @@ class LLaMa2Strategy(NLPInterface):
         
         result:List = [{"role": item.role, "content": item.content} for item in Formatter().llama_to_openai(response_text)]
             
+        lastest_response_role: str = result[-1]["role"] if len(result) > 0 else ""
+        lastest_response_content: str = result[-1]["content"] if len(result) > 0 else ""
         print("result")
         print(result)
         print()
@@ -55,8 +57,8 @@ class LLaMa2Strategy(NLPInterface):
             response = {
                 "choices": [{
                     "message":{
-                        "role": result[-1]["role"],
-                        "content": result[-1]["content"]
+                        "role": lastest_response_role,
+                        "content": lastest_response_content
                     }
                 }]
             }
