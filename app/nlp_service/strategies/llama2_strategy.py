@@ -1,6 +1,7 @@
 from typing import List, Optional
 from app.nlp_service.strategies.strategy import NLPInterface
-from app.component.chat import Params, Response
+from app.component.chat import Params, Response, RoleItem
+from app.component.formatter import Formatter
 
 import os
 
@@ -21,22 +22,26 @@ class LLaMa2Strategy(NLPInterface):
         )
 
 
-    def process_text(self, params: Params) -> Response:            
+    def process_text(self, params: Params) -> Response:    
+        prompt:str = Formatter().openai_to_llama(params)
+        
         ### 利用 pipeline 調用模型       
         sequences = self.pipeline(
-            f"[INST]Question:hello[/INST]",
+            prompt,
             do_sample=True,
-            top_k=10,
+            top_k=params.top_k,
             num_return_sequences=1,
             eos_token_id=self. tokenizer.eos_token_id,
-            max_length=512
+            max_length=params.max_tokens
         )
         
-        print('response:')
-        print(''.join(seq['generated_text'] for seq in sequences))
+        response_text: str = ''.join(seq['generated_text'] for seq in sequences)
+        
+        result:List = [{"role": item.role, "content": item.content} for item in Formatter().llama_to_openai(response_text)]
+            
         return Response(
-            purpose = '',
+            purpose = params.purpose,
             input_messages = params.roles,
-            response ={''.join(seq['generated_text'] for seq in sequences)}
+            response ={result}
         )
         # pass
