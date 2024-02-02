@@ -16,6 +16,7 @@ class LLaMa2Strategy(NLPInterface):
         
         self.pipeline = transformers.pipeline(
             "text-generation",
+            token = os.environ.get('HF_ACCESS_TOKEN'),
             model=self.model_endpoint,
             torch_dtype=torch.float32,
             device_map="auto",
