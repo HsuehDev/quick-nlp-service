@@ -17,17 +17,17 @@ def save_response_data(response: Response) -> None:
     mongo_client = pymongo.MongoClient(MONGODB_HOST)
 
     db = mongo_client[MONGODB_DATABASE]
-    collection = db[MONGODB_COLLECTION]
+    collection = db[MONGODB_COLLECTION] 
 
     response_data = {
-        "id": json_data["id"],
-        "object": json_data["object"],
-        "created": json_data["created"],
-        "model": json_data["model"],
+        "id": json_data.get("id"),
+        "object": json_data.get("object"),
+        "created": json_data.get("created"),
+        "model": json_data.get("model"),
         "purpose": purpose,
         "prompt": json.dumps([item.dict() for item in messages], indent=2),
-        "choices": json_data["choices"],
-        "usage": json_data["usage"],
+        "choices": json_data.get("choices"),
+        "usage": json_data.get("usage"),
     }
 
     # 將 JSON 數據插入到集合中
