@@ -45,7 +45,12 @@ class Formatter():
     def llama_to_openai(self, input_text: str) -> List[RoleItem]:
         # get system message
         system_message_pattern = re.compile(r'<<SYS>>(.*?)<</SYS>>')
-        self.system_message = re.search(system_message_pattern, input_text).group(1)
+        
+        system_message_match = re.search(system_message_pattern, input_text).group(1)
+        if system_message_pattern:
+            self.system_message = system_message_match.group(1)
+        else:
+            self.system_message = ""
 
         modified_text = re.sub(system_message_pattern, '', input_text)
 
@@ -55,4 +60,7 @@ class Formatter():
 
         roles: List[RoleItem] = [RoleItem(role=role, content=content) for role, content in roles_matches]
 
+        if self.system_message:
+            roles.insert(0, RoleItem(role = 'system', content = self.system_message))
+        
         return roles
