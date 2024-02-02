@@ -34,7 +34,7 @@ class Formatter():
                 continue
 
             if current_role == "user":
-                current_system_message: str = f"<<SYS>>{self.system_message}<</SYS>>" if first_user else ""
+                current_system_message: str = f"<<SYS>>{self.system_message}<</SYS>>" if first_user and len(self.system_message) > 0  else ""
                 current_content = f"[INST]{current_system_message}{current_content}[/INST]"
 
                 first_user = False
