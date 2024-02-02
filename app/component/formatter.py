@@ -49,7 +49,7 @@ class Formatter():
         system_message_pattern = re.compile(r'<<SYS>>(.*?)<</SYS>>')
         
         system_message_match = re.search(system_message_pattern, input_text)
-        if system_message_match:
+        if system_message_match or "<<SYS>>" in input_text :
             self.system_message = system_message_match.group(1)
         else:
             self.system_message = ""
@@ -60,9 +60,9 @@ class Formatter():
         role_pattern = r'\[INST\]([^[]+)\[/INST\]([^[]+)'
         roles_matches = re.findall(role_pattern, modified_text)
 
-        roles: List[RoleItem] = [RoleItem(role=role, content=content) for role, content in roles_matches]
+        roles: List[RoleItem] = [RoleItem(role=role, content=content) for role, content in roles_matches if len(role) > 0 and len(content) > 0]
 
-        if self.system_message:
+        if len(self.system_message) > 0:
             roles.insert(0, RoleItem(role = 'system', content = self.system_message))
         
         return roles
