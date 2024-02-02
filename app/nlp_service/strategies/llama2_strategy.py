@@ -23,7 +23,7 @@ class LLaMa2Strategy(NLPInterface):
 
 
     def process_text(self, params: Params) -> Response:    
-        prompt:str = Formatter().openai_to_llama(params)
+        prompt:str = Formatter().openai_to_llama(list(params.roles))
         
         ### 利用 pipeline 調用模型       
         sequences = self.pipeline(
