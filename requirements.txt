@@ -6,3 +6,7 @@ pymongo==4.4.1
 
 transformers==4.37.2
 accelerate==0.21.0
+
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
