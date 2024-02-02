@@ -1,6 +1,6 @@
 from app.nlp_service.strategies.strategy import NLPInterface
 from app.nlp_service.strategies.openai_strategy import OpenAIStrategy
-from app.nlp_service.strategies.llama2_stragegy import LLaMa2Strategy
+from app.nlp_service.strategies.llama2_strategy import LLaMa2Strategy
 
 nlp_strategies = {
     # "huggingface": self.huggingface_nlp_service,
@@ -9,4 +9,6 @@ nlp_strategies = {
     "gpt-35-turbo-instruct": OpenAIStrategy(),
     "gpt-4": OpenAIStrategy(),
     "gpt-4-32k": OpenAIStrategy(),
+    
+    "llama-2": LLaMa2Strategy(),
 }
