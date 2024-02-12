@@ -14,6 +14,7 @@ class Params(BaseModel):
     top_k: Optional[int] = 5
     roles: List[RoleItem]
     frequency_penalty: Optional[float]
+    repetition_penalty: Optional[float] = 1.03
     presence_penalty: Optional[float]
     stop: Optional[str] = ""
     past_messages: Optional[int] = 10
