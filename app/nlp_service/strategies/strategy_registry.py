@@ -1,6 +1,6 @@
 from app.nlp_service.strategies.strategy import NLPInterface
 from app.nlp_service.strategies.openai_strategy import OpenAIStrategy
-from app.nlp_service.strategies.llama2_strategy import LLaMa2Strategy
+# from app.nlp_service.strategies.llama2_strategy import LLaMa2Strategy
 from app.nlp_service.strategies.tgi_strategy import TGIStrategy
 
 nlp_strategies = {
