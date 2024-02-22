@@ -11,6 +11,6 @@ nlp_strategies = {
     "gpt-4": OpenAIStrategy(),
     "gpt-4-32k": OpenAIStrategy(),
     
-    'llama-2-7b': TGIStrategy(),
+    'chinese-alpaca-2-7b': TGIStrategy(),
     # "llama-2": LLaMa2Strategy(),
 }

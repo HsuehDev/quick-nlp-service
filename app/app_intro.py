@@ -31,7 +31,7 @@ Following is the data format for the request body:
 4. gpt-4                  |  2. top_k
 5. gpt-4-32k              | 
 
-6. llama-2-7b             | From the WuLab HuggingFace TGI api service.
+6. chinese-alpaca-2-7b    | From the WuLab HuggingFace TGI api service.
                           | The following parameters are not available :
                           |  1. frequency_penalty
                           |  2. presence_penalty
