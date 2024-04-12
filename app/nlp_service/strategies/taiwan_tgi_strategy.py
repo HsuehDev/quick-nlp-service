@@ -9,7 +9,7 @@ import os
 
 class TaiwanTGIStrategy(NLPInterface):
     def __init__(self) -> None:
-        self.url: str = os.environ.get('TAIWAN_TGI_API_ENDPOINT')
+        self.url: str = "http://140.115.126.210:9999/generate"
         
         self.header: dict = {
             'Content-Type': 'application/json'
@@ -21,22 +21,7 @@ class TaiwanTGIStrategy(NLPInterface):
         request_body: dict = {
             "inputs": input_string,
             "parameters": {
-                "best_of": 1,
-                "decoder_input_details": True,
-                "details": True,
-                "do_sample": True,
                 "max_new_tokens": params.max_tokens,
-                "repetition_penalty": params.repetition_penalty,
-                "return_full_text": False,
-                "seed": None,
-                "stop": ["photographer"],
-                "temperature": params.temperature,
-                "top_k": params.top_k,
-                "top_n_tokens": 5,
-                "top_p": params.top_p,
-                "truncate": None,
-                "typical_p": 0.95,
-                "watermark": True
             }
         }
         
