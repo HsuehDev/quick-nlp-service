@@ -66,3 +66,28 @@ class Formatter():
             roles.insert(0, RoleItem(role = 'system', content = self.system_message))
         
         return roles
+
+    def openai_to_taiwan_llama(self, roles: List[RoleItem]) -> str:
+        result: str = ""
+        first_user: bool = True
+
+        self.openai_to_chatlog(roles)
+
+        for chatlog in self.chatlog_list:
+            current_role: str = chatlog['role']
+            current_content: str = chatlog['content']
+
+            if current_role == "system":
+                self.system_message = current_content
+                continue
+
+            if current_role == "user":
+                current_system_message: str = f"{self.system_message}" if first_user and len(self.system_message) > 0  else ""
+                current_content = f" USER: {current_system_message}{current_content} "
+
+                first_user = False
+            
+            if current_role == "user" or current_role == "assistant":
+                result += f""" ASSISTANT: {current_content} """
+
+        return result
