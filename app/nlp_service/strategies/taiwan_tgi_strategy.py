@@ -15,6 +15,12 @@ class TaiwanTGIStrategy(NLPInterface):
             'Content-Type': 'application/json'
         }
         
+    def remove_prefix(self, text, prefix="ASSISTANT:"):
+        if text.startswith(prefix):
+            # 移除前綴後返回剩餘的部分
+            return text[len(prefix):]
+        return text
+        
     def process_text(self, params: Params) -> Response: 
         input_string: str = Formatter().openai_to_llama(list(params.roles))       
         
@@ -58,7 +64,7 @@ class TaiwanTGIStrategy(NLPInterface):
                 "choices": [{
                     "message":{
                         "role": 'assistant',
-                        "content": generated_text
+                        "content": self.remove_prefix(generated_text)
                     }
                 }]
                 }
