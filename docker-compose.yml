@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.${COMPUTE_UNIT}
     container_name: openai_fastapi_container
+    restart: always
     environment:
       OPENAI_API_TYPE: ${OPENAI_API_TYPE}
       OPENAI_API_KEY: ${OPENAI_API_KEY}
