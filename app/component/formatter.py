@@ -91,3 +91,29 @@ class Formatter():
                 result += f""" ASSISTANT: {current_content} """
 
         return result
+
+    def openai_to_llama3(self, roles: List[RoleItem]) -> str:
+        result: str = ""
+        first_user: bool = True
+
+        self.openai_to_chatlog(roles)
+
+        for chatlog in self.chatlog_list:
+            current_role: str = chatlog['role']
+            current_content: str = chatlog['content']
+
+            if current_role == "system":
+                self.system_message = current_content
+                continue
+
+            if current_role == "user":
+                current_system_message: str = f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>{self.system_message}<|eot_id|>" if first_user and len(self.system_message) > 0  else ""
+                current_content = f"<|start_header_id|>user<|end_header_id|>{current_system_message}{current_content}<|eot_id|>"
+
+                first_user = False
+            
+            if current_role == "user" or current_role == "assistant":
+                result += f"""<|start_header_id|>assistant<|end_header_id|>{current_content}<|eot_id|>"""
+
+        return result
+    
