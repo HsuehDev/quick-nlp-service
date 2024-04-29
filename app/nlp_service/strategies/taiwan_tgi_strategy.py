@@ -48,6 +48,9 @@ class TaiwanTGIStrategy(NLPInterface):
             }
         }
         
+        print('request_body:')
+        print(request_body)
+        
         model_response = requests.post(
             url= self.url, 
             headers= self.header, 

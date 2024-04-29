@@ -4,11 +4,6 @@ from app.component.chat import Params, Response, RoleItem
 from app.component.formatter import Formatter
 
 import os
-
-from transformers import AutoTokenizer
-import transformers
-import torch
-
 class LLaMa3Strategy(NLPInterface):
     def process_text(self, params: Params) -> Response:    
         prompt:str = Formatter().openai_to_llama3(list(params.roles))
