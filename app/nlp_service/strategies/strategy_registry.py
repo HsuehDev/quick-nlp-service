@@ -13,7 +13,7 @@ nlp_strategies = {
     "gpt-4": OpenAIStrategy(),
     "gpt-4-32k": OpenAIStrategy(),
     
-    'taide-llama-3' : LLaMa3Strategy(),
+    'taide-llama-3' : TGIStrategy(),
     # 'lab-llm': TGIStrategy(),
     # 'taiwan-llama' : TaiwanTGIStrategy()
     # "llama-2": LLaMa2Strategy(),
