@@ -16,7 +16,7 @@ class TGIStrategy(NLPInterface):
         }
         
     def process_text(self, params: Params) -> Response: 
-        input_string: str = Formatter().openai_to_llama(list(params.roles))       
+        input_string: str = Formatter().openai_to_llama3(list(params.roles))       
         
         request_body: dict = {
             "inputs": input_string,
