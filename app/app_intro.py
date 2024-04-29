@@ -32,7 +32,7 @@ Following is the data format for the request body:
 5. gpt-4-32k              | 
 
                           | From the self-hosted HuggingFace TGI api service.
-6. llama-3                | The following parameters are not available :
+6. taide-llama-3          | The following parameters are not available :
                           |  1. frequency_penalty
                           |  2. presence_penalty
                           |  3. stop
