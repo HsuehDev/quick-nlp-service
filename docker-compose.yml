@@ -16,6 +16,7 @@ services:
       MONGODB_COLLECTION: ${MONGODB_COLLECTION}
       HF_ACCESS_TOKEN: ${HF_ACCESS_TOKEN}
       TGI_API_ENDPOINT: ${TGI_API_ENDPOINT}
+      TAIWAN_TGI_API_ENDPOINT: ${TAIWAN_TGI_API_ENDPOINT}
     # volumes:
       # - ./main.py:/app/app/main.py
       # Map the host model folder to nlp_service/model.
